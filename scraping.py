@@ -10,10 +10,14 @@ def get_images(subreddit: str) -> List[str]:
     sub = reddit.subreddit(subreddit)
     
     final = []
-    for s in sub.new(limit=100):
+    for s in sub.new(limit=10):
         url = s.url
         if url.startswith('https://i.redd.it') or url.startswith('https://i.imgur.com'):
             final.append(url)
     return final
+
+def get_recent_image(subreddit: str) -> str:
+    ''' returns url of most recently posted image to subreddit '''
+    
 
 get_images('195')
