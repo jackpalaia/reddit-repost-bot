@@ -23,6 +23,8 @@ def detect_image_repost(urls: List[str], url: str) -> int:
     final_url = urls[0]
 
     for u in urls:
+        if u == url:
+            continue
         image2 = io.imread(u)
         k2, d2 = sift.detectAndCompute(image2, None)
         matches = flann.knnMatch(d1, d2, k=2)
@@ -40,5 +42,4 @@ def detect_image_repost(urls: List[str], url: str) -> int:
             max_confidence = confidence
             final_url = u
 
-    print(url, final_url, max_confidence)
-    return [final_url, max_confidence]
+    return [url, final_url, max_confidence]
